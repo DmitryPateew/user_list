@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content>{{ user?.name }}</mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-content>{{ user?.email }}</mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-content>{{ user?.phone }}</mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-content>{{ user?.username }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Edit</button>
+    <button mat-raised-button color="warn"
+            (click)="sendItemId(user?.id)">Delete
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,7 @@
+<div >
+  <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let user of users">
+      <user-card [user]="user" (id)="deleteCard($event)"></user-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
