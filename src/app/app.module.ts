@@ -9,6 +9,8 @@ import {FooterComponent} from "./core/layout/footer/footer.component";
 import {MainPageComponent} from "./core/main-page/main-page.component";
 import {NavigationComponent} from "./core/navigation/navigation.component";
 import {provideHttpClient} from "@angular/common/http";
+import {MatDialogModule} from "@angular/material/dialog";
+import {AddCardComponent} from "./core/add-card/add-card.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {provideHttpClient} from "@angular/common/http";
     BrowserAnimationsModule,
     HeaderComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    MatDialogModule,
+    AddCardComponent,
   ],
   providers: [ [provideHttpClient()]],
   bootstrap: [MainPageComponent]

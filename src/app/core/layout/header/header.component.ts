@@ -1,13 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {IUser} from "../../../models/user.interface";
+import {UserService} from "../../../services/user/user.service";
+import {AddCardComponent} from "../../add-card/add-card.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less'],
-  standalone: true
+  standalone: true,
+  imports: [MatIconModule, MatButtonModule]
 })
 
 export class HeaderComponent {
-  title = 'header';
+  public userService = inject(UserService);
+  public addCard = inject(MatDialog);
+
+  openDialog(): void {
+    const dialogRef = this.addCard.open(AddCardComponent);
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        this.userService.addUser(result)
+      });
+  }
 }

@@ -1,0 +1,30 @@
+<div mat-dialog-content>
+  <p>Add new user</p>
+  <form class="form" [formGroup]="user">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput [errorStateMatcher]="matcher"
+             placeholder="Ex. pat@example.com">
+      <mat-error>Please enter a valid email address</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input formControlName="phone" matInput>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>User nickname</mat-label>
+      <input formControlName="username" matInput>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onCreate()">Add user</button>
+</div>
+
+
+

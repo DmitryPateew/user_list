@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {UserApiService} from "../../services/user/user-api.service";
 import {IUser} from "../../models/user.interface";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {UserCardComponent} from "../user-card/user-card.component";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {Observable} from "rxjs";
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'user-list',
@@ -15,14 +16,9 @@ import {Observable} from "rxjs";
 })
 
 export class UserListComponent {
-  title = 'user-list';
+  public userService = inject(UserService);
 
-  users$:Observable<IUser[]> =  this.service.getUsers();
-
-  constructor(private service: UserApiService) {
-  }
-
-  deleteCard(id: number | undefined) {
-    console.log(id);
+  deleteCard(id: number | undefined): void {
+    this.userService.deleteUser(id)
   }
 }

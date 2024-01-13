@@ -4,8 +4,8 @@ export interface IUser {
   email: string;
   phone: string;
   username: string;
-  website: string;
-  address: {
+  website?: string;
+  address?: {
     city: string;
     geo: {
       lat: string;
@@ -15,7 +15,7 @@ export interface IUser {
     suite: string;
     zipcode: string;
   }
-  company: {
+  company?: {
     bs: string;
     catchPhrase: string;
     name: string;
