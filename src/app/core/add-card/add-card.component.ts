@@ -1,31 +1,12 @@
-import {Component, inject, Inject} from '@angular/core';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogModule,
-} from '@angular/material/dialog';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef,} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import {
-  FormGroup,
-  FormsModule,
-  Validators,
-  FormBuilder,
-  ReactiveFormsModule,
-  FormControl,
-  FormGroupDirective, NgForm
-} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {UserService} from "../../services/user/user.service";
-import {ErrorStateMatcher} from '@angular/material/core';
 import {FORM_MIN_VALUE, PHONE_PATTERN} from "../../constant/constant";
 import {FormErrorStateMatcher} from "../../utils/exceptions";
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import {IUser} from "../../models/user.interface";
 
 @Component({
   selector: 'add-card',
@@ -47,7 +28,7 @@ export class AddCardComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AddCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: IUser,
     private formBuilder: FormBuilder
   ) {
     const {NAME, EMAIL, PHONE, USER_NAME} = FORM_MIN_VALUE;
@@ -70,4 +51,3 @@ export class AddCardComponent {
     this.dialogRef.close(this.user.value)
   }
 }
-
