@@ -1,10 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {UserApiService} from "../../services/user/user-api.service";
-import {IUser} from "../../models/user.interface";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {UserCardComponent} from "../user-card/user-card.component";
 import {AsyncPipe, NgForOf} from "@angular/common";
-import {Observable} from "rxjs";
 import {UserService} from "../../services/user/user.service";
 
 @Component({
