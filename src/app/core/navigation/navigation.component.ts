@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatTabsModule} from "@angular/material/tabs";
-import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {NgForOf} from "@angular/common";
 import {NAVIGATION_LINKS} from "../../constant/constant";
 import {INavigation} from "../../models/link.interface";
