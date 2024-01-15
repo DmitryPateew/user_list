@@ -3,6 +3,7 @@
     <a mat-tab-link
        (click)="activeLink = link"
        [active]="activeLink == link"
+
        [routerLink]="[link.value]"
     >{{ link.name }}
     </a>

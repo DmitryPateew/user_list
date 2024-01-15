@@ -19,3 +19,8 @@ export const FORM_MIN_VALUE = {
   PHONE: 6,
   USER_NAME: 4
 };
+
+export const EDIT_ADD_BUTTON_NAME = {
+  EDIT: 'Edit user',
+  ADD: 'Add new user'
+}

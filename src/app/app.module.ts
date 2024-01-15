@@ -9,7 +9,7 @@ import {MainPageComponent} from "./core/main-page/main-page.component";
 import {NavigationComponent} from "./core/navigation/navigation.component";
 import {provideHttpClient} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
-import {AddCardComponent} from "./core/add-card/add-card.component";
+import {AddEditCardComponent} from "./core/add-edit-card/add-edit-card.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import {AddCardComponent} from "./core/add-card/add-card.component";
     FooterComponent,
     NavigationComponent,
     MatDialogModule,
-    AddCardComponent,
+    AddEditCardComponent,
   ],
   providers: [ [provideHttpClient()]],
   bootstrap: [MainPageComponent]

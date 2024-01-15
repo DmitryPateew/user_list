@@ -11,11 +11,12 @@ import {UsersLocalstorageService} from "./users.localstorage.service";
 
 export class UserService {
 
-  public userApiService = inject(UserApiService);
-  public usersLocalStorageService = inject(UsersLocalstorageService);
+  public userApiService: UserApiService = inject(UserApiService);
+  public usersLocalStorageService: UsersLocalstorageService = inject(UsersLocalstorageService);
 
   private readonly usersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   public readonly users$: Observable<IUser[]> = this.usersSubject$.asObservable();
+  public readonly isEdit$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() {
     this.initUsers();
@@ -27,7 +28,7 @@ export class UserService {
       this.usersSubject$.next(usersFromLocalStorage);
     } else {
       this.userApiService.getUsers().subscribe(
-        users => {
+        (users: IUser[]) => {
           this.usersLocalStorageService.setItem(LOCAL_STORAGE_USERS_KEY, users);
           return this.usersSubject$.next(users);
         }
@@ -36,8 +37,8 @@ export class UserService {
   }
 
   public addUser(user: IUser): void {
-    const currentUsers = this.usersSubject$.value;
-    const updatedUsers = [...currentUsers, user];
+    const currentUsers: IUser[] = this.usersSubject$.value;
+    const updatedUsers: IUser[] = [...currentUsers, user];
     this.usersSubject$.next(updatedUsers);
     this.usersLocalStorageService.setItem(LOCAL_STORAGE_USERS_KEY, updatedUsers);
   }
@@ -46,11 +47,20 @@ export class UserService {
     const {USER_ID_UNDEFINED} = EXCEPTIONS;
 
     if (id) {
-      const updatedUsers = this.usersSubject$.value.filter(user => user.id !== id);
+      const updatedUsers: IUser[] = this.usersSubject$.value
+        .filter((user: IUser): boolean => user.id !== id);
       this.usersSubject$.next(updatedUsers);
       this.usersLocalStorageService.setItem(LOCAL_STORAGE_USERS_KEY, updatedUsers);
     } else {
       console.log(USER_ID_UNDEFINED);
     }
+  }
+
+  public editUser(user: IUser): void {
+    console.log(user);
+    this.usersSubject$.next(
+      this.usersSubject$.value.map(
+        (userSubject: IUser): IUser => userSubject.id === user.id ? user : userSubject));
+    this.usersLocalStorageService.setItem(LOCAL_STORAGE_USERS_KEY, this.usersSubject$.value);
   }
 }

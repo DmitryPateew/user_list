@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {HeaderComponent} from "../layout/header/header.component";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'main-page',
@@ -7,6 +6,4 @@ import {HeaderComponent} from "../layout/header/header.component";
   styleUrls: ['./main-page.component.less'],
 })
 
-export class MainPageComponent {
-  title = 'main-page';
-}
+export class MainPageComponent {}

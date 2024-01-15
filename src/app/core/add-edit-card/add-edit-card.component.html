@@ -22,8 +22,8 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onCreate()">Add user</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="user.value" [disabled]="!user.valid">{{ buttonName$ | async }}</button>
 </div>
 
 

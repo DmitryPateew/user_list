@@ -2,8 +2,8 @@ import {Component, inject} from '@angular/core';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {UserService} from "../../../services/user/user.service";
-import {AddCardComponent} from "../../add-card/add-card.component";
-import {MatDialog} from "@angular/material/dialog";
+import {AddEditCardComponent} from "../../add-edit-card/add-edit-card.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'header',
@@ -14,15 +14,18 @@ import {MatDialog} from "@angular/material/dialog";
 })
 
 export class HeaderComponent {
-  public userService = inject(UserService);
-  public addCard = inject(MatDialog);
+  public userService: UserService = inject(UserService);
+  public addCard: MatDialog = inject(MatDialog);
 
   openDialog(): void {
-    const dialogRef = this.addCard.open(AddCardComponent);
+    this.userService.isEdit$.next(false);
+    const dialogRef: MatDialogRef<AddEditCardComponent> = this.addCard.open(AddEditCardComponent);
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        this.userService.addUser(result)
+        if (result) {
+          this.userService.addUser(result)
+        }
       });
   }
 }

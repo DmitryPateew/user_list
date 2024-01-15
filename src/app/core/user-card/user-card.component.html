@@ -7,7 +7,8 @@
   <mat-divider></mat-divider>
   <mat-card-content>{{ user?.username }}</mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary">Edit</button>
+    <button mat-raised-button color="primary"
+            (click)="openDialog()">Edit</button>
     <button mat-raised-button color="warn"
             (click)="sendItemId(user?.id)">Delete
     </button>

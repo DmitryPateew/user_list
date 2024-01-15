@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {RouterOutlet} from "@angular/router";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'footer',
@@ -8,6 +7,4 @@ import {RouterOutlet} from "@angular/router";
   standalone: true
 })
 
-export class FooterComponent {
-  title = 'footer';
-}
+export class FooterComponent {}

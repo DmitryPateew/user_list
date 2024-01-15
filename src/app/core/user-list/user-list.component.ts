@@ -13,7 +13,7 @@ import {UserService} from "../../services/user/user.service";
 })
 
 export class UserListComponent {
-  public userService = inject(UserService);
+  public userService: UserService = inject(UserService);
 
   deleteCard(id: number | undefined): void {
     this.userService.deleteUser(id)
