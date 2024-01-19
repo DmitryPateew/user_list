@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {EXCEPTIONS} from "../../constant/constant";
+import {IUser} from "../../models/user.interface";
 
 @Injectable({providedIn: "root"})
 
@@ -9,7 +10,7 @@ export class UsersLocalstorageService {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  getItem(key: string): any {
+  getItem(key: string): IUser[] | void {
     const {LOCAL_STORAGE_UNDEFINED} = EXCEPTIONS;
 
     try {

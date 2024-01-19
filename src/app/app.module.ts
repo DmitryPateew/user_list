@@ -10,6 +10,11 @@ import {NavigationComponent} from "./core/navigation/navigation.component";
 import {provideHttpClient} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
 import {AddEditCardComponent} from "./core/add-edit-card/add-edit-card.component";
+import { StoreModule } from '@ngrx/store';
+import {userReducer} from "./ngRxStore/users/user.reducer";
+import {USERS_SELECTOR} from "./constant/constant";
+import {UserEffects} from "./ngRxStore/users/users.effects";
+import {EffectsModule} from "@ngrx/effects";
 
 @NgModule({
   declarations: [
@@ -24,6 +29,10 @@ import {AddEditCardComponent} from "./core/add-edit-card/add-edit-card.component
     NavigationComponent,
     MatDialogModule,
     AddEditCardComponent,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature(USERS_SELECTOR, userReducer),
+    EffectsModule.forFeature([UserEffects]),
   ],
   providers: [ [provideHttpClient()]],
   bootstrap: [MainPageComponent]

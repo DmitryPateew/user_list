@@ -9,6 +9,7 @@ export const GET_USERS_URL = 'https://jsonplaceholder.typicode.com/users';
 export const EXCEPTIONS = {
   USER_ID_UNDEFINED: 'Card id is undefined',
   LOCAL_STORAGE_UNDEFINED: 'Value by key in Local storage does not find',
+  UPDATE_LOCAL_STORAGE_ERROR: 'Error update local storage:'
 };
 
 export const LOCAL_STORAGE_USERS_KEY = 'users';
@@ -24,3 +25,5 @@ export const EDIT_ADD_BUTTON_NAME = {
   EDIT: 'Edit user',
   ADD: 'Add new user'
 }
+
+export const USERS_SELECTOR = 'users';

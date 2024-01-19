@@ -1,4 +1,4 @@
-import {Component, inject, Inject} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule,} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -8,8 +8,7 @@ import {EDIT_ADD_BUTTON_NAME, FORM_MIN_VALUE, PHONE_PATTERN} from "../../constan
 import {FormErrorStateMatcher} from "../../utils/exceptions";
 import {IUser} from "../../models/user.interface";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {map, Observable} from "rxjs";
-import {UserService} from "../../services/user/user.service";
+import {BehaviorSubject, map, Observable} from "rxjs";
 
 const {EDIT, ADD} = EDIT_ADD_BUTTON_NAME;
 
@@ -33,11 +32,10 @@ const {EDIT, ADD} = EDIT_ADD_BUTTON_NAME;
 export class AddEditCardComponent {
 
   public matcher: FormErrorStateMatcher = new FormErrorStateMatcher();
-  public userService: UserService = inject(UserService);
-
+  public readonly isEdit$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public user: FormGroup;
 
-  public readonly buttonName$: Observable<string> = this.userService.isEdit$.pipe(
+  public readonly buttonName$: Observable<string> = this.isEdit$.pipe(
     map((isEdit: boolean): string => isEdit ? EDIT : ADD));
 
   constructor(
@@ -46,6 +44,10 @@ export class AddEditCardComponent {
   ) {
     const {NAME, EMAIL, PHONE, USER_NAME} = FORM_MIN_VALUE;
     const {id, name, email, phone, username} = userDataFromCard ?? {};
+
+    if (userDataFromCard) {
+      this.isEdit$.next(true)
+    }
 
     this.user = this.formBuilder.group({
       id: id || Date.now(),
